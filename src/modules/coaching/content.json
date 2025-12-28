@@ -1,0 +1,13 @@
+{
+    "20-20-20_rule": {
+        "title": "Quy tắc 20-20-20",
+        "description": "Cứ 20 phút, nhìn vật cách 20 feet (6m) trong 20 giây",
+        "image": "assets/images/20-20-20.png",
+        "actionable": true
+    },
+    "screen_distance_guide": {
+        "title": "Khoảng cách màn hình",
+        "description": "Giữ khoảng cách 50-75cm từ mắt đến màn hình",
+        "image": "assets/images/distance.png"
+    }
+}

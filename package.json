@@ -1,0 +1,28 @@
+{
+  "name": "dry-eye-app",
+  "version": "2.0.0",
+  "description": "Smart dry eye screening and coaching application",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "electron:dev": "concurrently -k \"cross-env BROWSER=none npm run dev\" \"wait-on tcp:5173 && electron .\"",
+    "electron:build": "npm run build && electron-builder"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^39.2.7",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "wait-on": "^9.0.3"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.9",
+    "canvas-confetti": "^1.9.4",
+    "dexie": "^3.2.4",
+    "onnxruntime-web": "^1.23.2"
+  }
+}

@@ -1,0 +1,187 @@
+{
+    "dataset": {
+        "file": "Dry_Eye_Dataset.csv",
+        "target_column": "Dry_Eye_Disease",
+        "target_mapping": {
+            "Không DED": 0,
+            "Có DED": 1
+        }
+    },
+    "features": {
+        "refined_features": [
+            "Discomfort Eye-strain",
+            "Itchiness/Irritation in eye",
+            "Redness in eye",
+            "Stress level",
+            "Smart device before bed",
+            "Sleep quality",
+            "Gender",
+            "Alcohol consumption",
+            "Smoking",
+            "Sleep disorder",
+            "Ongoing medication",
+            "Caffeine consumption",
+            "Feel sleepy during day",
+            "Wake up during night",
+            "Medical issue",
+            "Blue-light filter",
+            "Daily steps",
+            "Age",
+            "Average screen time"
+        ],
+        "n_features": 19
+    },
+    "preprocessing": {
+        "blood_pressure_split": {
+            "source_column": "Blood pressure",
+            "new_columns": [
+                "Systolic_BP",
+                "Diastolic_BP"
+            ],
+            "method": "split by /"
+        },
+        "yn_encoding": {
+            "columns": [
+                "Smart device before bed",
+                "Blue-light filter",
+                "Sleep disorder",
+                "Wake up during night",
+                "Feel sleepy during day",
+                "Medical issue",
+                "Ongoing medication",
+                "Smoking",
+                "Alcohol consumption",
+                "Caffeine consumption"
+            ],
+            "mapping": {
+                "Y": 1,
+                "N": 0
+            }
+        },
+        "gender_encoding": {
+            "column": "Gender",
+            "mapping": {
+                "Male": 1,
+                "Female": 0
+            }
+        }
+    },
+    "base_models": {
+        "xgboost": {
+            "max_depth": 3,
+            "n_estimators": 150,
+            "learning_rate": 0.1,
+            "subsample": 0.8,
+            "colsample_bytree": 0.9,
+            "random_state": 42,
+            "eval_metric": "logloss"
+        },
+        "lightgbm": {
+            "n_estimators": 150,
+            "max_depth": 5,
+            "learning_rate": 0.1,
+            "num_leaves": 31,
+            "random_state": 42,
+            "verbose": -1
+        },
+        "catboost": {
+            "iterations": 150,
+            "depth": 5,
+            "learning_rate": 0.1,
+            "random_state": 42,
+            "verbose": false
+        },
+        "gradientboosting": {
+            "n_estimators": 150,
+            "max_depth": 5,
+            "learning_rate": 0.1,
+            "random_state": 42
+        },
+        "histgradientboosting": {
+            "max_iter": 150,
+            "max_depth": 5,
+            "learning_rate": 0.1,
+            "random_state": 42
+        }
+    },
+    "neural_network": {
+        "architecture": {
+            "layers": [
+                256,
+                128,
+                64,
+                1
+            ],
+            "activations": [
+                "relu",
+                "relu",
+                "relu",
+                "sigmoid"
+            ],
+            "dropout_rates": [
+                0.3,
+                0.2,
+                0.1,
+                0.0
+            ],
+            "batch_normalization": [
+                true,
+                true,
+                true,
+                false
+            ]
+        },
+        "optimizer": {
+            "type": "Adam",
+            "learning_rate": 0.001
+        },
+        "loss": "binary_crossentropy",
+        "metrics": [
+            "accuracy"
+        ],
+        "training": {
+            "epochs": 100,
+            "batch_size": 32,
+            "validation_split": 0.2
+        },
+        "callbacks": {
+            "early_stopping": {
+                "monitor": "val_loss",
+                "patience": 20,
+                "restore_best_weights": true
+            },
+            "reduce_lr": {
+                "monitor": "val_loss",
+                "factor": 0.5,
+                "patience": 10,
+                "min_lr": 1e-05
+            }
+        }
+    },
+    "training_strategy": {
+        "k_folds": 5,
+        "smote_for_base_models": {
+            "enabled": true,
+            "sampling_strategy": 0.7
+        },
+        "oversampling_for_nn": {
+            "method": "RandomOverSampler",
+            "enabled": true
+        },
+        "random_seed": 42
+    },
+    "performance_reference": {
+        "accuracy": 0.8193,
+        "precision": 0.8203140934121966,
+        "recall": 0.9255196747718033,
+        "f1_macro": 0.7874114420714826,
+        "recall_class_0": 0.6204222317966394,
+        "recall_class_1": 0.9255196747718033
+    },
+    "metadata": {
+        "created_at": "2025-12-25 11:08:15",
+        "model_type": "Stacking Ensemble with Neural Network Meta-learner",
+        "base_models_count": 5,
+        "total_nn_input_features": 24
+    }
+}

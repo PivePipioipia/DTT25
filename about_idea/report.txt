@@ -1,0 +1,296 @@
+CHƯƠNG 1. GIỚI THIỆU
+
+1.1. Bối cảnh và Đặt vấn đề 
+Hiện nay, khô mắt (Dry Eye Disease - DED) được xác định là một vấn đề sức khỏe cộng đồng cấp thiết. Không chỉ dừng lại ở cảm giác khó chịu hay mệt mỏi, bệnh lý này còn gây rối loạn thị giác và ảnh hưởng trực tiếp đến chất lượng cuộc sống cũng như năng suất làm việc. Đây cũng chính là nguyên nhân hàng đầu thôi thúc bệnh nhân tìm đến các dịch vụ chăm sóc nhãn khoa.
+Những người mắc bệnh khô mắt (DED) thường trải qua các triệu chứng khó chịu như khô, mỏi, ngứa và đỏ mắt, từ đó ảnh hưởng đáng kể đến chất lượng cuộc sống hàng ngày. DED là một bệnh đa yếu tố, chịu tác động của tuổi tác, giới tính và nhiều yếu tố khác. Mặc dù một số nghiên cứu đã tập trung vào nhóm người cao tuổi và chỉ ra rằng việc sử dụng thiết bị điện tử kéo dài có thể góp phần làm xuất hiện DED [1] [2] [3], tỷ lệ mắc bệnh trong các nhóm dân số trẻ hơn, gần đây là sinh viên đại học đã được nghiên cứu [4], nghiên cứu gần đây ở Ả Rập Xê Út cho thấy nữ giới, cư dân vùng trung tâm và những người có thói quen sử dụng màn hình nhiều giờ mỗi ngày gặp các triệu chứng khô mắt và khó khăn về chu kỳ ngủ – thức nghiêm trọng hơn [5]. Tuy nhiên với nhóm người ở độ tuổi lao động từ 18 - 45 tuổi vẫn chưa được đẩy mạnh nghiên cứu đầy đủ và cần được làm rõ. 
+Hiện nay, việc ứng dụng Trí tuệ nhân tạo (AI) trong hỗ trợ chẩn đoán Bệnh khô mắt (Dry Eye Disease – DED) đã đạt được những kết quả bước đầu khả quan. Tuy nhiên, các mô hình hiện hữu vẫn tồn tại hai hạn chế lớn khiến hiệu quả chưa đạt mức tối ưu. Thứ nhất là thiếu tính chuyên biệt: đa số các nghiên cứu tập trung vào bài toán nhãn khoa tổng quát (nhiều bệnh lý cùng lúc) thay vì đi sâu vào đặc thù của DED, dẫn đến độ chính xác trong việc định lượng mức độ nghiêm trọng của bệnh còn hạn chế. Thứ hai là bộ đặc trưng đầu vào thiếu tính khái quát: hầu hết các mô hình chưa khai thác hết các dữ liệu phi lâm sàng nhưng mang tính quyết định như thói quen sinh hoạt (chế độ dinh dưỡng, giấc ngủ, thời gian sử dụng màn hình, chất kích thích…). [6]
+Hiện nay, các ứng dụng AI trong chăm sóc sức khỏe mắt vẫn chủ yếu phát triển theo hướng riêng lẻ, tập trung hoặc vào chẩn đoán khô mắt dựa trên Computer Vision, hoặc vào đánh giá triệu chứng thông qua bảng hỏi và xử lý ngôn ngữ tự nhiên (NLP). Trong khi đó, các chức năng hỗ trợ sau chẩn đoán như chatbot phản hồi kết quả, cung cấp kiến thức giáo dục về Khô mắt (Dry Eye Education – DEE) và các biện pháp phòng ngừa phổ biến như quy tắc 20–20–20 vẫn chưa được tích hợp một cách hệ thống trong cùng một nền tảng, cho thấy còn tồn tại khoảng trống trong các giải pháp AI chăm sóc sức khỏe mắt hiện nay.
+
+1.2. Mục tiêu của Dự án 
+Dự án hướng tới việc xây dựng một hệ sinh thái chăm sóc mắt toàn diện dựa trên trí tuệ nhân tạo, tập trung giải quyết bài toán chẩn đoán sớm và hỗ trợ điều trị bệnh khô mắt (DED). Các mục tiêu cụ thể bao gồm:
+1.2.1. Xây dựng mô hình Học máy (Machine Learning) chẩn đoán và phân tầng mức độ bệnh
+Phát triển thuật toán học máy có khả năng phát hiện sự hiện diện của bệnh khô mắt và phân loại chính xác mức độ nghiêm trọng dựa trên dữ liệu đầu vào. Mô hình trí tuệ nhân tạo được xây dựng theo hướng kết hợp dữ liệu hình ảnh (Computer Vision) và thông tin tự báo cáo của người dùng, nhằm hỗ trợ chẩn đoán và phân tầng mức độ khô mắt một cách khách quan, có hệ thống, làm cơ sở cho các chiến lược chăm sóc và can thiệp phù hợp.
+1.2.2.  Xây dựng hệ thống tư vấn và giáo dục sức khỏe mắt (Dry Eye Education – DEE)
+Thiết kế hệ thống chatbot thông minh dựa trên NLP để phản hồi kết quả chẩn đoán, giải thích tình trạng khô mắt và cung cấp kiến thức giáo dục, giúp người dùng hiểu rõ bệnh và các yếu tố nguy cơ liên quan.
+1.2.3. Tích hợp các cơ chế hỗ trợ phòng ngừa và bảo vệ thị giác
+Phát triển các chức năng hỗ trợ phòng ngừa như nhắc nhở quy tắc 20–20–20, quản lý thời gian sử dụng thiết bị điện tử và khuyến nghị thói quen sinh hoạt phù hợp nhằm hạn chế tiến triển nặng của khô mắt.
+1.2.4. Nâng cao mức độ cá nhân hóa và trải nghiệm người dùng trong chăm sóc sức khỏe mắt
+Hướng tới xây dựng một hệ thống tích hợp, thân thiện với người dùng, vừa hỗ trợ đánh giá tình trạng khô mắt vừa đồng hành trong phòng ngừa, từ đó nâng cao hiệu quả dự phòng và trải nghiệm sử dụng lâu dài.
+1.3. Phạm vi và Đóng góp của Giải pháp 
+1.3.1. Phạm vi áp dụng
+Giải pháp được thiết kế với các phạm vi chính như sau:
+Phạm vi dữ liệu: Dự án sử dụng bộ dữ liệu Dry Eye Disease do ban tổ chức cung cấp làm nguồn dữ liệu nền, bao gồm các thông tin về triệu chứng chủ quan, lối sống và một số đặc trưng sức khỏe liên quan đến  bệnh khô mắt. Đồng thời, hệ thống thu thập bổ sung dữ liệu hình ảnh từ webcam (khi có sự đồng ý của người dùng) để trích xuất các đặc trưng hành vi thị giác như tần suất chớp mắt, chớp mắt không hoàn toàn và khoảng thời gian giữa các lần chớp, cũng như ước lượng khoảng cách và tư thế nhìn theo chu kỳ (mỗi 10 phút) nhằm hỗ trợ đánh giá nguy cơ và điều chỉnh thói quen sử dụng thiết bị điện tử.
+Phạm vi địa lý và thời gian: Dự án không giới hạn phạm vi địa lý do hệ thống được triển khai dưới dạng ứng dụng desktop, có thể sử dụng ở nhiều khu vực khác nhau. Giai đoạn đầu tập trung phát triển và thử nghiệm trên nền tảng desktop, với định hướng mở rộng sang nền tảng di động trong tương lai. Phạm vi thời gian nghiên cứu gắn với quá trình theo dõi hành vi thị giác của người dùng trong quá trình sử dụng thiết bị điện tử hằng ngày.
+Phạm vi người dùng: Đối tượng người dùng của hệ thống là nhóm người trong độ tuổi lao động từ 18-45 tuổi, đặc biệt là những người thường xuyên hoặc sử dụng thiết bị điện tử trong thời gian dài mỗi ngày như nhân viên văn phòng, sinh viên hoặc người làm việc từ xa. Các chức năng của hệ thống được thiết kế phù hợp với nhóm người dùng này, nhằm hỗ trợ phòng ngừa và giảm nguy cơ mắc bệnh khô mắt trong môi trường làm việc số.
+Phạm vi công nghệ: Dự án sử dụng các mô hình học máy để dự báo nguy cơ bệnh khô mắt, kết hợp kỹ thuật thị giác máy tính nhằm phân tích dữ liệu hình ảnh từ webcam (tần suất chớp mắt, chớp mắt không hoàn toàn, khoảng cách nhìn). Kết quả được trực quan hóa bằng Tableau hoặc Power BI và tích hợp vào ứng dụng desktop thông qua hệ thống chatbot, cùng các chức năng hỗ trợ như nhắc nghỉ theo quy tắc 20–20–20 và nhắc điều chỉnh tư thế định kỳ.
+1.3.2. Đóng góp của giải pháp
+Giải pháp mang lại một số đóng góp quan trọng cả về mặt học thuật lẫn thực tiễn:
+Về mặt học thuật: Dự án đóng góp giá trị học thuật thông qua việc tích hợp dữ liệu đa nguồn (khảo sát chuẩn và dữ liệu webcam) vào bài toán đánh giá nguy cơ khô mắt, từ đó làm sáng tỏ các tác động của các yếu tố hành vi như tần suất và chất lượng chớp mắt. Đồng thời, việc sử dụng các mô hình học máy trên dữ liệu thực tế không chỉ cung cấp cơ sở so sánh hiệu quả mà còn tăng cường tính diễn giải, tạo tiền đề cho các nghiên cứu sâu hơn về bệnh lý bề mặt nhãn cầu.
+Về mặt thực tiễn: Đề xuất một hệ thống hỗ trợ toàn diện trên nền tảng desktop, không chỉ dừng lại ở việc dự báo nguy cơ khô mắt mà còn tích hợp các chức năng giám sát hành vi sử dụng thiết bị điện tử, nhắc nghỉ theo quy tắc 20–20–20 và điều chỉnh tư thế, khoảng cách nhìn. Bên cạnh đó, việc cung cấp dashboard trực quan và chatbot tư vấn giúp người dùng dễ dàng theo dõi tình trạng mắt và nhận được các khuyến nghị phù hợp, góp phần nâng cao ý thức phòng ngừa và bảo vệ sức khỏe mắt trong nhóm người sử dụng thiết bị số thường xuyên. Mọi hoạt động thu thập dữ liệu từ webcam chỉ được thực hiện khi có sự đồng ý rõ ràng của người dùng, đảm bảo quyền riêng tư và tuân thủ các nguyên tắc đạo đức nghiên cứu.
+
+CHƯƠNG 2. CÁC CÔNG TRÌNH LIÊN QUAN
+
+2.1. Các phương pháp và giải pháp hiện hữu 
+Trong những năm gần đây, nhiều nghiên cứu y khoa nói chung, cùng với các công trình nghiên cứu về bệnh khô mắt (DED) nói riêng, đã cung cấp những bằng chứng thực nghiệm quan trọng, hỗ trợ việc hiểu rõ mối quan hệ giữa các chỉ số lâm sàng và phi lâm sàng với kết quả sức khỏe của bệnh nhân.
+Một số công trình tiêu biểu có thể kể đến như:
+DryEyeRhythm là một ứng dụng smartphone (iOS/Android) do Đại học Juntendo phát triển, cho phép người dùng tự sàng lọc nguy cơ mắc bệnh khô mắt một cách không xâm lấn và thuận tiện ngay trên thiết bị cá nhân. Ứng dụng khai thác camera trước để tự động đo tần suất nháy mắt và maximum blink interval (MBI), đồng thời tích hợp bảng câu hỏi Ocular Surface Disease Index (OSDI) nhằm đánh giá toàn diện cả hành vi nháy mắt và triệu chứng chủ quan của người dùng. Các nghiên cứu cho thấy DryEyeRhythm đạt hiệu quả sàng lọc cao với độ nhạy 71,4%, độ đặc hiệu 87,5% và AUC = 0,910 so với tiêu chuẩn lâm sàng, chứng minh khả năng ứng dụng trong phát hiện sớm DED ngoài môi trường bệnh viện. Bên cạnh đó, bảng hỏi OSDI trên ứng dụng có độ ổn định nội tại cao (Cronbach’s α = 0,874) và tương quan tốt với các thước đo lâm sàng truyền thống, cho thấy tiềm năng triển khai DryEyeRhythm như một công cụ hỗ trợ theo dõi sức khỏe bề mặt nhãn cầu, đặc biệt phù hợp cho người thường xuyên sử dụng thiết bị điện tử. [7]
+Blink Training App là ứng dụng trên smartphone (Android/iOS) nhằm hỗ trợ cải thiện tình trạng khô mắt thông qua việc huấn luyện và nhắc nhở nháy mắt đúng cách. Ứng dụng cung cấp các bài tập nháy mắt có hướng dẫn, theo dõi tần suất nháy mắt bằng camera trước và nhắc người dùng tập nháy trong quá trình sử dụng thiết bị điện tử. Dữ liệu đầu vào của hệ thống bao gồm hình ảnh từ camera để trích xuất đặc trưng nháy mắt, kết hợp với thông tin tự báo cáo của người dùng như mức độ khô mắt và thời gian sử dụng màn hình, từ đó hỗ trợ đánh giá và cải thiện hành vi nháy mắt. [8]
+Webcam Break Reminder là ứng dụng nhắc nghỉ máy tính dành cho người dùng làm việc với màn hình trong thời gian dài, nhằm giảm Digital Eye Strain (DES) và hỗ trợ phòng ngừa Dry Eye Disease (DED). Ứng dụng sử dụng webcam để theo dõi hướng nhìn và trạng thái mắt, ước lượng thời gian nhìn màn hình liên tục và phát hiện nguy cơ mỏi mắt. Dựa trên dữ liệu này, hệ thống sẽ tự động nhắc người dùng nghỉ theo quy tắc 20–20–20 (mỗi 20 phút nhìn xa 20 feet trong 20 giây). Đầu vào chính gồm hình ảnh webcam và thời gian sử dụng màn hình, đầu ra là các thông báo nghỉ ngơi giúp cải thiện thói quen thị giác và giảm tác động tiêu cực của việc dùng thiết bị số kéo dài. [9] 
+Nhìn chung, nhiều nghiên cứu và ứng dụng đã tập trung khai thác công nghệ di động, thị giác máy tính và trí tuệ nhân tạo nhằm hỗ trợ sàng lọc, theo dõi và can thiệp sớm bệnh khô mắt ngoài môi trường lâm sàng. Các giải pháp tiêu biểu bao gồm ứng dụng đo tần suất nháy mắt và chỉ số MBI kết hợp bảng hỏi OSDI để sàng lọc nguy cơ DED, các ứng dụng huấn luyện và nhắc nhở nháy mắt nhằm cải thiện hành vi thị giác, cũng như hệ thống giám sát thời gian nhìn màn hình và nhắc nghỉ theo quy tắc 20–20–20 để giảm mỏi mắt kỹ thuật số. Những hướng tiếp cận này cho thấy tiềm năng lớn trong việc hỗ trợ phát hiện sớm, cải thiện thói quen sử dụng thiết bị số và nâng cao chăm sóc sức khỏe bề mặt nhãn cầu.
+2.2. Phân tích hạn chế và khoảng trống nghiên cứu (Research Gap) 
+Về phạm vi nghiên cứu: Các giải pháp hiện có như DryEyeRhythm, Blink Training App và Webcam Break Reminder chủ yếu tập trung vào các chức năng riêng lẻ liên quan đến sức khỏe mắt. DryEyeRhythm giới hạn trong phạm vi sàng lọc nguy cơ bệnh khô mắt dựa trên dữ liệu nháy mắt và bảng hỏi tự báo cáo, không can thiệp điều trị. Blink Training App tập trung vào huấn luyện và cải thiện hành vi nháy mắt thông qua nhắc nhở và bài tập, trong khi Webcam Break Reminder hướng đến việc giám sát thời gian sử dụng màn hình và nhắc nghỉ nhằm giảm mỏi mắt kỹ thuật số. Các hệ thống này chủ yếu khai thác dữ liệu phi xâm lấn từ camera và thông tin người dùng, phục vụ hỗ trợ phòng ngừa và theo dõi sức khỏe mắt. 
+Về khoảng trống nghiên cứu: Các hệ thống hiện có mới chỉ giải quyết từng khía cạnh riêng lẻ của vấn đề sức khỏe mắt. Hiện vẫn chưa có một hệ thống tích hợp toàn diện vừa thực hiện chức năng sàng lọc hoặc đánh giá nguy cơ bệnh khô mắt, vừa kết hợp các cơ chế hỗ trợ bảo vệ mắt, điều chỉnh hành vi sử dụng thiết bị số và nhắc nhở phòng ngừa nhằm duy trì tương tác lâu dài với người dùng. Khoảng trống này đặc biệt rõ rệt trong nhóm người trong độ tuổi lao động (18–45 tuổi) – nhóm thường xuyên tiếp xúc với màn hình và có nguy cơ cao mắc các rối loạn bề mặt nhãn cầu. Điều này cho thấy tiềm năng phát triển các giải pháp tích hợp, hướng đến phòng ngừa chủ động và giảm nguy cơ tiến triển bệnh khô mắt ở nhóm dân số này.
+2.3. Định vị sự khác biệt của giải pháp đề xuất
+
+Điểm tương đồng với các công trình trước: (giới hạn bao nhiêu trang m he) 60 trang áaaaaaaaaaaaaaaaaaaaaaaaaaaGIANSG SINH MÀ MƯA QUÁAAA
+t đi ngủ à
+t đi ăn á
+
+Dự án kế thừa việc sử dụng các bộ dữ liệu đã được khảo sát và thu thập theo các công cụ chuẩn, bao gồm dữ liệu triệu chứng chủ quan, thông tin lối sống và một số đặc trưng sức khỏe liên quan. Về phương pháp, dự án áp dụng các thuật toán học máy phổ biến đã được sử dụng rộng rãi trong các nghiên cứu trước đây, thay vì đề xuất thuật toán mới, nhằm đảm bảo tính so sánh và khả năng diễn giải kết quả. Bên cạnh đó, dự án cũng hướng tới việc xây dựng một hệ thống hỗ trợ phân tích và đánh giá nguy cơ bệnh khô mắt dựa trên các thành phần mô hình hiện có, tương tự như các hướng tiếp cận đã được đề xuất trong các nền tảng ứng dụng trước đây.
+Đồng thời, dự án cũng kế thừa và tích hợp các khuyến nghị và cơ chế bảo vệ mắt đã được xác lập, bao gồm việc theo dõi và đánh giá khoảng cách an toàn giữa người dùng và màn hình, thời gian sử dụng thiết bị số liên tục, cũng như áp dụng quy tắc 20–20–20 nhằm giảm mỏi mắt kỹ thuật số. Các kỹ thuật xử lý dữ liệu đầu vào từ camera được sử dụng để trích xuất một cách không xâm lấn các đặc trưng hành vi liên quan đến mắt, bao gồm tần số chớp mắt, khoảng thời gian giữa các lần chớp, và tình trạng chớp mắt không hoàn toàn (incomplete blink) – những yếu tố đã được chứng minh có liên quan mật thiết đến sự ổn định của màng nước mắt và nguy cơ bệnh khô mắt. Các thông số này được khai thác nhằm phục vụ cho việc đánh giá nguy cơ và hỗ trợ điều chỉnh thói quen thị giác của người dùng.
+Điểm khác biệt của giải pháp đề xuất
+Bên cạnh việc kế thừa dữ liệu và các thuật toán học máy từ các công trình trước, dự án mở rộng phân tích theo hướng tích hợp hơn bằng cách trích xuất các yếu tố quan trọng ảnh hưởng đến nguy cơ và mức độ khô mắt của người dùng. Dự án ứng dụng thị giác máy tính để phân tích các đặc trưng nháy mắt như tần suất chớp và chớp mắt không hoàn toàn, từ đó hỗ trợ đánh giá mức độ nặng nhẹ của bệnh khô mắt một cách không xâm lấn. Việc sử dụng dữ liệu từ camera chỉ được thực hiện khi có sự đồng ý của người dùng, đảm bảo tuân thủ các nguyên tắc về quyền riêng tư và đạo đức nghiên cứu.
+Trên cơ sở kết quả phân tích, hệ thống được mở rộng với một module chatbot nhằm cung cấp phản hồi tức thời cho người dùng về mức độ nguy cơ hoặc mức độ bệnh, đồng thời đưa ra các khuyến nghị hành vi và biện pháp phòng ngừa nhằm hạn chế tiến triển nặng hơn. 
+Ngoài ra, dự án hướng tới việc tích hợp các chức năng hỗ trợ tự động trong môi trường sử dụng thiết bị điện tử, bao gồm việc kích hoạt webcam theo chu kỳ (ví dụ mỗi 10 phút) để ước lượng tư thế và khoảng cách nhìn giữa người dùng và màn hình, từ đó đưa ra các nhắc nhở điều chỉnh tầm nhìn khi khoảng cách quá gần; trong trường hợp không phát hiện nguy cơ, hệ thống sẽ bỏ qua ngầm (skip) mà không làm gián đoạn trải nghiệm người dùng. Bên cạnh đó, dự án tích hợp cơ chế nhắc nghỉ theo quy tắc 20–20–20, nhằm hỗ trợ hình thành thói quen sử dụng thiết bị số lành mạnh. Cách tiếp cận tích hợp này hướng đến xây dựng một hệ thống hỗ trợ toàn diện, vượt ra ngoài phạm vi dự đoán đơn lẻ, điều mà các hệ thống hiện có chưa đáp ứng đầy đủ.
+Cuối cùng, dự án xây dựng một dashboard phân tích trực quan, cho phép tổng hợp và theo dõi các chỉ số hành vi thị giác, mức độ nguy cơ khô mắt và xu hướng thay đổi theo thời gian, góp phần hỗ trợ người dùng và nhà nghiên cứu trong việc đánh giá và cải thiện sức khỏe mắt một cách liên tục.
+
+
+CHƯƠNG 3. QUẢN LÝ VÀ PHÂN TÍCH DỮ LIỆU
+
+3.1. Nguồn và Quy trình Thu thập Dữ liệu
+Dữ liệu được sử dụng trong dự án này được cung cấp chính thức bởi Ban Tổ chức cuộc thi Vietnam Datathon – Data Storm 2025, và chỉ được phép khai thác trong khuôn khổ tham gia cuộc thi theo các điều khoản sử dụng đã được quy định. Nhóm thực hiện dự án mang mã đội Forecast Force và là đơn vị được cấp quyền truy cập hợp lệ vào bộ dữ liệu của cuộc thi.
+Trong số các tập dữ liệu được Ban Tổ chức cung cấp, nhóm lựa chọn và tập trung khai thác bộ dữ liệu Dry Eye Disease (DED). Đây là bộ dữ liệu dạng cấu trúc, được thiết kế phục vụ cho các bài toán mô hình hóa dự đoán và hỗ trợ chẩn đoán bệnh khô mắt, với đối tượng nghiên cứu là các cá nhân trong độ tuổi từ 18 đến 45.
+Bộ dữ liệu được xây dựng nhằm phân tích mối quan hệ phức tạp và hai chiều giữa lối sống hiện đại, sức khỏe giấc ngủ, và các bệnh lý bề mặt nhãn cầu (Ocular Surface Diseases – OSD), trong đó Dry Eye Disease là trọng tâm chính. Việc lựa chọn tập dữ liệu này phù hợp trực tiếp với mục tiêu nghiên cứu của nhóm, đồng thời đáp ứng yêu cầu thực tiễn và tính ứng dụng cao trong bối cảnh sức khỏe số hiện nay.
+3.1.1. Đặc điểm nổi bật của Dữ liệu
+Bộ dữ liệu Dry Eye Disease (DED) được lựa chọn trong dự án sở hữu nhiều đặc điểm nổi bật, phù hợp cho các bài toán phân tích dữ liệu và xây dựng mô hình học máy trong lĩnh vực sức khỏe. Những đặc điểm này không chỉ đảm bảo tính khả thi về mặt kỹ thuật mà còn nâng cao giá trị thực tiễn và tính ứng dụng của kết quả nghiên cứu.
+Thứ nhất, dữ liệu có cấu trúc rõ ràng và tính nhất quán cao. Toàn bộ dữ liệu được tổ chức dưới dạng bảng (structured data), với các biến được chuẩn hóa về kiểu dữ liệu và ý nghĩa. Điều này tạo điều kiện thuận lợi cho các bước tiền xử lý, khai phá dữ liệu và huấn luyện mô hình học máy mà không cần các kỹ thuật xử lý dữ liệu phi cấu trúc phức tạp.
+Thứ hai, bộ dữ liệu tập trung vào nhóm đối tượng cụ thể và có kiểm soát. Các mẫu dữ liệu được thu thập từ những cá nhân trong độ tuổi từ 18 đến 45, đại diện cho nhóm dân số lao động thường xuyên tiếp xúc với thiết bị số. Việc giới hạn độ tuổi giúp giảm nhiễu do các yếu tố bệnh lý liên quan đến lão hóa, đồng thời tăng tính đồng nhất của dữ liệu cho mục tiêu phân tích.
+Thứ ba, sự kết hợp đa chiều giữa triệu chứng nhãn khoa và yếu tố lối sống hiện đại là một điểm mạnh quan trọng. Bộ dữ liệu không chỉ ghi nhận các triệu chứng trực tiếp của bệnh khô mắt (như đỏ mắt, ngứa mắt, mỏi mắt), mà còn tích hợp các yếu tố nguy cơ then chốt liên quan đến hành vi sử dụng thiết bị số và sức khỏe giấc ngủ. Cách tiếp cận này cho phép mô hình khai thác mối quan hệ hai chiều giữa lối sống, giấc ngủ và sức khỏe bề mặt nhãn cầu.
+Thứ tư, các biến giấc ngủ đóng vai trò đặc trưng phân biệt (discriminative features). Những thông tin như thời lượng ngủ và chất lượng giấc ngủ giúp làm rõ mối liên hệ đã được ghi nhận trong y văn giữa rối loạn giấc ngủ và Dry Eye Disease. Đây là nền tảng quan trọng cho các phân tích đồng mắc (co-morbidity analysis) và đánh giá yếu tố nguy cơ.
+Cuối cùng, bộ dữ liệu có tiềm năng ứng dụng cao trong cả dự đoán và hỗ trợ chẩn đoán. Với cấu trúc biến đầu vào – đầu ra rõ ràng, dữ liệu phù hợp cho nhiều bài toán khác nhau như phân loại nhị phân bệnh khô mắt, dự đoán mức độ nghiêm trọng, cũng như xây dựng các hệ thống hỗ trợ quyết định nhằm cá nhân hóa chiến lược can thiệp và điều trị.
+Nhờ những đặc điểm trên, bộ dữ liệu Dry Eye Disease không chỉ đáp ứng tốt yêu cầu kỹ thuật của cuộc thi Vietnam Datathon – Data Storm 2025 mà còn tạo nền tảng vững chắc cho các phân tích chuyên sâu và mô hình hóa đáng tin cậy trong dự án.
+3.1.2. Dữ liệu bổ sung
+Để tăng cường khả năng phản ứng tức thời và cá nhân hóa trải nghiệm người dùng, nhóm triển khai một pipeline thu thập dữ liệu bổ sung thông qua hệ thống thị giác máy tính và tương tác thời gian thực. Dự án thu thập dữ liệu từ camera để phân tích mắt (chớp mắt, khoảng cách, chất lượng hình ảnh) trong thời gian thực, nhằm đánh giá nguy cơ khô mắt. Quy trình được thiết kế như sau: 
+Dữ liệu thị giác (Computer Vision Data): Sử dụng MediaPipe Face Landmarker để thu thập dữ liệu về khoảng cách (Distance Bucket: NEAR, OK, FAR).
+Trích xuất các chỉ số sinh học mới: Tỷ lệ chớp mắt (Blink Ratio) và Độ mở của mắt (Eye Openness EAR). Những dữ liệu này giúp bổ sung cho các triệu chứng lâm sàng trong bộ dữ liệu gốc.
+Dữ liệu phản hồi (Message & Feedback Data):
+Thu thập dữ liệu thông qua các thông báo (Notification) và phản hồi từ người dùng (Chatbot NLG/In-app banner) về trạng thái mắt tại thời điểm thực tế.
+Dữ liệu hệ thống (Backend & Log Data): Lưu trữ các chỉ số tổng hợp (Aggregate metrics) và điểm rủi ro (Risk score) từ API suy luận, giúp theo dõi xu hướng bệnh lý theo thời gian mà không cần lưu trữ hình ảnh nhạy cảm.
+3.2. Phân tích Khám phá Dữ liệu (EDA)
+Trong giai đoạn này, nhóm Forecast Force tiến hành phân tích sâu các đặc trưng dữ liệu nhằm tìm ra các quy luật, mối tương quan và các yếu tố gây nhiễu. Quá trình EDA được chia thành 4 phân đoạn chính tương ứng với 4 nhóm đặc trưng:
+3.2.1. Phân tích Nhân khẩu học và Chỉ số Sinh trắc
+1. Phân bổ Đối tượng Nghiên cứu
+1.1. Giới tính (Gender)
+Tập dữ liệu bao gồm 20,000 mẫu hoàn chỉnh (không có giá trị thiếu). Phân tích cho thấy sự chênh lệch rõ rệt về giới tính:
+Phân bổ: Male chiếm 50.1% và Female chiếm 49.9%.
+Mối liên hệ với DED: Kiểm định Chi-square cho giá trị , xác nhận sự khác biệt này có ý nghĩa thống kê.
+Kết luận: Giới tính là yếu tố nguy cơ quan trọng, phù hợp với các nghiên cứu y học về ảnh hưởng của hormone đối với sức khỏe nhãn cầu.
+
+1.2. Độ tuổi (Age)
+Phân tích biến độ tuổi trong khoảng từ 18 đến 45 nhằm xác định tầm ảnh hưởng của quá trình lão hóa tự nhiên đối với bệnh khô mắt. Tuy nhiên, kết quả thực nghiệm cho thấy xu hướng khác biệt:
+Phân tích giá trị trung bình: Độ tuổi trung bình của nhóm mắc bệnh (Mean = 31.45) gần như tương đương với nhóm không mắc bệnh (Mean = 31.36).
+Kiểm định T-test cho giá trị  với  (> 0.05).
+Chỉ số Cohen's d = 0.0110 (rất nhỏ), khẳng định sự khác biệt về tuổi tác giữa hai nhóm là không đáng kể.
+Phân tích theo nhóm tuổi (Age Grouping): Khi chia dữ liệu thành 3 nhóm (18-25, 26-35, 36-45), tỷ lệ DED duy trì ở mức ổn định và không có sự đột biến theo thời gian.
+Kiểm định Chi-square cho kết quả  với , cho thấy sự phân bố bệnh lý giữa các nhóm tuổi không có sự khác biệt về mặt thống kê.
+Kết luận: Trái với các giả định ban đầu, độ tuổi không phải là yếu tố rủi ro (risk factor) trong tập dữ liệu này. Điều này gợi ý rằng các tác nhân gây bệnh có thể đến từ lối sống hoặc các yếu tố bên ngoài khác hơn là do quá trình lão hóa sinh học của đối tượng khảo sát.
+
+2. Các Chỉ số Sinh trắc (Biometrics)
+Việc phân tích BMI nhằm kiểm tra giả thuyết liệu thể trạng (từ thiếu cân đến béo phì) có liên quan đến nguy cơ mắc bệnh khô mắt hay không.
+Phân tích giá trị trung bình:
+Nhóm DED=Y có chỉ số BMI trung bình là 25.06, trong khi nhóm DED=N là 24.96.
+Kiểm định T-test cho giá trị , cho thấy sự khác biệt về trị số BMI trung bình giữa người mắc bệnh và không mắc bệnh là không có ý nghĩa thống kê.
+Phân tích theo phân loại thể trạng (BMI Category):
+Dữ liệu được chia thành 4 nhóm: Underweight, Normal, Overweight, Obese.
+Kiểm định Chi-square cho kết quả  với . Dù kết quả này vẫn lớn hơn ngưỡng , nhưng nó cho thấy xu hướng phân bổ bệnh lý giữa các nhóm cân nặng có sự dao động nhẹ (đặc biệt là so với biến Age có ).
+
+
+
+
+
+
+
+
+Kết luận: Nhìn chung, BMI không phải là một yếu tố dự báo mạnh cho DED trong tập dữ liệu này. Giả thuyết về việc thể trạng ảnh hưởng trực tiếp đến sức khỏe nhãn cầu không được dữ liệu ủng hộ một cách mạnh mẽ.
+3.2.2. Tương quan giữa Sức khỏe Giấc ngủ và Tâm lý
+1. Chất lượng và Thời lượng Giấc ngủ
+1.1. Thời lượng ngủ (Sleep Duration)
+Phân tích nhằm xác định liệu việc thiếu ngủ hoặc ngủ quá nhiều có phải là tác nhân trực tiếp dẫn đến DED hay không. Kết quả thực nghiệm cho thấy:
+Phân tích giá trị trung bình:
+Cả hai nhóm DED=Y và DED=N đều có thời lượng ngủ trung bình chính xác là 7.00 giờ/đêm.
+Kiểm định T-test cho giá trị  (), xác nhận không có bất kỳ sự khác biệt nào về mặt thống kê giữa hai nhóm.
+Phân tích theo phân loại (Sleep Duration Category):
+Nhóm đã chia thời lượng ngủ thành 4 mức: Thiếu ngủ trầm trọng (<5h), Thiếu ngủ (5-7h), Bình thường (7-9h) và Ngủ quá nhiều (>9h).
+Tỷ lệ DED giữa các nhóm này gần như tương đồng tuyệt đối, thể hiện qua kiểm định Chi-square với .
+Kết luận: Thời lượng ngủ hoàn toàn không có giá trị dự đoán DED trong tập dữ liệu khảo sát. Điều này cho thấy số giờ ngủ không quan trọng bằng các rối loạn bệnh lý xảy ra trong lúc ngủ hoặc các áp lực tâm lý (Stress).
+
+
+
+1.2. Chất lượng giấc ngủ (Sleep Quality)
+Kết quả phân tích chỉ số này mang lại sự bất ngờ lớn so với giả thuyết ban đầu:
+Chỉ số: Thang điểm tự đánh giá từ 1 đến 5.
+Kết quả: Kiểm định Mann-Whitney U cho giá trị  và hệ số tương quan . Tỷ lệ DED gần như đi ngang bất kể điểm chất lượng giấc ngủ của người dùng là cao hay thấp.
+
+Kết luận: Sleep Quality không có giá trị dự đoán DED trong tập dữ liệu này. Điều này cho thấy cảm nhận chủ quan về độ "ngon giấc" không phản ánh đúng trạng thái sinh lý của mắt bằng các vấn đề bệnh lý cụ thể.
+2. Các vấn đề về Giấc ngủ (Sleep Problems)
+Nhóm tập trung phân tích 3 biến định tính: Thức giấc giữa đêm (Wake up at night), Rối loạn giấc ngủ (Sleep disorder), và Buồn ngủ ban ngày (Feel sleepy during day).
+Các vấn đề đơn lẻ: Phân tích ba tình trạng chính gồm Rối loạn giấc ngủ (Sleep disorder), Thức giấc giữa đêm (Wake up during night), và Buồn ngủ ban ngày (Feel sleepy during day) đều cho giá trị . Chỉ số Odds Ratio ≈ 1.0 khẳng định việc gặp phải các vấn đề này không làm tăng rủi ro mắc DED.
+Chỉ số tổng hợp (Sleep Problems Count): Khi phân tích tổng số lượng vấn đề giấc ngủ mà một người gặp phải (từ 0 đến 3), tỷ lệ mắc DED vẫn duy trì sự ổn định giữa các nhóm ().
+Kết luận: Trái với giả thuyết ban đầu, các vấn đề về giấc ngủ không phải là yếu tố dự báo có ý nghĩa lâm sàng đối với DED trong tập dữ liệu này.
+3. Mức độ Căng thẳng (Stress Level)
+Nhóm thực hiện phân tích mức độ căng thẳng tâm lý (thang điểm 1-5) để kiểm tra mối liên hệ với tình trạng khô mắt. Kết quả thực nghiệm cho thấy:
+Phân bổ tỷ lệ: Tỷ lệ mắc DED duy trì ổn định ở mức xấp xỉ 65% xuyên suốt từ nhóm có mức căng thẳng thấp (Level 1) đến nhóm có mức căng thẳng cao nhất (Level 5).
+Kiểm định thống kê: Kiểm định phi tham số Mann-Whitney U cho giá trị .
+Kiểm định Chi-square trên bảng chéo (Contingency Table) cho kết quả  với .
+Kết luận: Stress Level không có mối tương quan với DED trong tập dữ liệu này. Sự biến động về mức độ căng thẳng không làm thay đổi xác suất mắc bệnh của đối tượng nghiên cứu.
+3.2.3. Tác động của Lối sống Kỹ thuật số và Thói quen
+1. Thời gian Sử dụng Màn hình (Screen Time)
+Đây là biến duy nhất trong nhóm có tín hiệu thống kê, tuy nhiên hiệu ứng thực tế là rất thấp.
+Đặc điểm: Trung bình người dùng sử dụng 5.5 giờ/ngày.
+Tương quan: Kiểm định Mann-Whitney U cho , xác nhận có sự khác biệt giữa hai nhóm DED=Y/N. Tuy nhiên, hệ số tương quan  cho thấy mối quan hệ này cực kỳ yếu.
+Ngưỡng 8 giờ: Những người dùng trên 8h/ngày có tỷ lệ DED cao hơn nhóm còn lại 2.5% (). Không quan sát thấy "điểm gãy" (breakpoint) rủi ro; đồ thị biểu diễn mối quan hệ gần như đi ngang.
+
+2. Bộ lọc Ánh sáng Xanh (Blue-Light Filter)
+Trái với kỳ vọng về khả năng bảo vệ mắt, dữ liệu cho thấy:
+Hiệu quả: Tỷ lệ DED ở nhóm dùng filter (65.42%) gần như tương đương nhóm không dùng (64.95%) với .
+Tương tác: Khi kết hợp với Screen Time, Blue-light Filter hoàn toàn không làm giảm tỷ lệ mắc bệnh ở bất kỳ mức độ sử dụng màn hình nào.
+
+Kết luận: Biến này không có giá trị phòng ngừa trong tập dữ liệu này.
+3. Thói quen Sinh hoạt (Smoking, Alcohol, Caffeine)
+Cả ba yếu tố thói quen đều không cho thấy vai trò là tác nhân gây bệnh:
+Kiểm định: Tất cả đều có  và chỉ số rủi ro Odds Ratio ≈ 1.
+Chỉ số rủi ro lối sống (Lifestyle Risk Score): Việc cộng dồn các thói quen xấu (0-3) không tạo ra xu hướng tăng tỷ lệ DED (dao động không đáng kể ~1.7%).
+Thiết bị trước khi ngủ: Sử dụng thiết bị thông minh trước khi ngủ cũng không cho thấy ý nghĩa thống kê ().
+
+3.2.4. Vận động Thể chất, Tiền sử Bệnh và Biến mục tiêu
+1. Vận động và Tiền sử bệnh: Tương quan yếu
+Trái ngược với các lý thuyết y khoa thông thường, dữ liệu thực tế cho thấy các yếu tố này không đóng vai trò bảo vệ hay nguy cơ đáng kể:
+Vận động (Daily Steps & Physical Activity): Cả hai biến đều có hệ số tương quan  và ROC-AUC xấp xỉ 0.5 (ngẫu nhiên). Không tồn tại hiệu ứng ngưỡng hay quan hệ liều lượng - đáp ứng (dose-response) đối với tỷ lệ DED.
+Tiền sử y tế (Medical Issue & Medication): Chênh lệch tỷ lệ DED giữa nhóm có và không có bệnh nền chỉ dưới 0.4% (). Các kiểm định Odds Ratio đều bao gồm giá trị 1.0, khẳng định đây là các biến dự báo yếu.
+2. Triệu chứng mắt: Tín hiệu dự báo then chốt
+Đây là nhóm biến có sức mạnh chi phối hoàn toàn mô hình, với hệ số tương quan gấp 30-35 lần so với các nhóm biến khác.
+Phân tích đơn biến: Ba triệu chứng Mỏi mắt (Discomfort), Đỏ mắt (Redness) và Ngứa mắt (Itchiness) đều có tác động nhất quán, làm tăng rủi ro mắc bệnh thêm ~10% ().
+Đặc tính độc lập: Các triệu chứng này có tương quan nội tại gần như bằng 0 (), nghĩa là mỗi triệu chứng cung cấp một thông tin riêng biệt, lý tưởng cho các mô hình học máy (Machine Learning).
+
+
+3. Phát hiện đột phá: Hiệu ứng "Bước nhảy" 0 → 1
+Phân tích sự kết hợp giữa các triệu chứng cho thấy một quy luật phi tuyến tính mạnh mẽ:
+Sự thay đổi đột biến: Khi đối tượng chuyển từ trạng thái 0 triệu chứng sang có ít nhất 1 triệu chứng, tỷ lệ DED tăng vọt từ 31.78% lên 69.41% (+37.63%).
+Hiệu ứng bão hòa: Sau khi đã có 1 triệu chứng, việc xuất hiện thêm các triệu chứng thứ 2 hoặc thứ 3 không làm tăng đáng kể nguy cơ mắc bệnh (biến động < 1.3%).
+
+
+3.3. Tiền xử lý và Chuẩn bị Dữ liệu
+3.3.1. Làm sạch và Kỹ thuật đặc trưng (Cleaning & Engineering)
+Nhóm thực hiện các bước chuẩn hóa dữ liệu dựa trên cấu hình refined_features đã được sàng lọc từ bước EDA:
+Mã hóa nhị phân (Binary Encoding): Tự động phát hiện các cột dạng chuỗi (object) chứa giá trị Y/N để chuyển đổi thành 1/0.
+Giới tính: Mã hóa Male/M = 1 và Female/F = 0.
+Xử lý biến huyết áp: Tách trường dữ liệu phức hợp Blood pressure (định dạng Systolic/Diastolic) thành hai biến số độc lập: Systolic_BP và Diastolic_BP.
+Đồng bộ nhãn mục tiêu: Chuẩn hóa tên cột mục tiêu thành Dry_Eye_Disease để đảm bảo tính nhất quán trong toàn bộ pipeline huấn luyện.
+3.3.2. Chiến lược xử lý Mất cân bằng và Chuẩn hóa
+Để đảm bảo mô hình không bị thiên kiến (bias) và đạt được hiệu suất hội tụ tốt nhất, nhóm áp dụng quy trình xử lý trong từng bước của K-Fold Cross-Validation:
+Chuẩn hóa Z-score: Sử dụng StandardScaler để đưa các đặc trưng số về cùng một thang đo. Quá trình fit chỉ thực hiện trên tập huấn luyện của từng fold để tránh hiện tượng rò rỉ dữ liệu (data leakage).
+Cân bằng dữ liệu (Resampling):
+Level 0 (Base models): Áp dụng SMOTE với sampling_strategy=0.7 trên tập huấn luyện của mỗi fold để tăng cường các mẫu thiểu số một cách tổng hợp.
+Level 1 (Meta-learner): Đối với mạng Neural Network (Meta-model), sử dụng RandomOverSampler trên toàn bộ ma trận đầu vào để ổn định quá trình học các trọng số meta.
+3.3.3. Quy trình tạo đặc trưng Meta (Stacking Pipeline)
+Nhóm triển khai kỹ thuật Out-Of-Fold (OOF) để tạo ra ma trận đặc trưng mới cho mô hình meta mà không gây quá khớp (overfitting):
+Phân tách dữ liệu: Sử dụng StratifiedKFold (5-splits, random_state=42) để giữ nguyên phân phối lớp.
+Huấn luyện mô hình nền (Base Models): 5 thuật toán mạnh mẽ nhất được lựa chọn bao gồm: XGBoost, LightGBM, CatBoost, GradientBoosting, và HistGradientBoosting.
+Trích xuất xác suất: Thu thập predict_proba[:, 1] từ dự đoán OOF của từng mô hình qua 5 fold.
+Hợp nhất ma trận (Meta-matrix): Ghép nối ma trận X_scaled ban đầu với 5 cột xác suất từ các mô hình nền để tạo thành ma trận đầu vào cuối cùng X_nn cho Meta-learner.
+3.3.4. Lưu ý về tính ổn định
+Hạt giống cố định: Tất cả các bước có yếu tố ngẫu nhiên (Shuffle, SMOTE, Model Init) đều sử dụng random_state=42 để đảm bảo kết quả có thể tái lập.
+Tính toàn vẹn: Pipeline giả định dữ liệu đầu vào đã được xử lý các giá trị khuyết (missing values) ở bước thô, tập trung vào việc tối ưu hóa hiệu suất dự báo dựa trên các "triệu chứng vàng" đã tìm thấy ở mục 3.2.4.
+3.4 Data Statement
+3.4.1. Nguồn gốc và Sở hữu
+Bộ dữ liệu về Dry Eye Disease (DED) là tài sản sở hữu trí tuệ độc quyền của Ban tổ chức cuộc thi "Vietnam Datathon – Data Storm 2025".
+3.4.2. Phạm vi sử dụng và Cam kết
+Mục đích: Chỉ sử dụng để phát triển mô hình trong khuôn khổ cuộc thi; không sử dụng cho mục đích thương mại hoặc nghiên cứu độc lập.
+Bảo mật: Dữ liệu là thông tin mật, tuyệt đối không sao chép, chia sẻ hoặc phân phối cho bất kỳ bên thứ ba nào ngoài các thành viên chính thức của nhóm.
+Đạo đức: Dữ liệu đã được ẩn danh hóa; nhóm cam kết không tái định danh và tuân thủ các quy định về đạo đức AI của cuộc thi.
+3.4.3. Chế tài vi phạm
+Nhóm cam kết tuân thủ mọi điều khoản của cuộc thi. Bất kỳ sai phạm nào sẽ dẫn đến việc bị loại ngay lập tức và tước bỏ mọi danh hiệu/giải thưởng (nếu có).
+
+CHƯƠNG 4. PHƯƠNG PHÁP VÀ KIẾN TRÚC HỆ THỐNG
+4.1. Kiến trúc tổng thể của ứng dụng chăm sóc sức khỏe thị giác
+
+Hình … Sơ đồ khối kiến trúc hệ thống tổng thể
+4.2. Thiết kế luồng hoạt động đa workflow của người dùng
+Workflow 1: Checkup – Đánh giá và sàng lọc nguy cơ khô mắt
+Workflow 2: Work Companion – Đồng hành và phòng ngừa trong quá trình làm việc
+
+4.3. Mô hình học máy trong đánh giá và phân loại nguy cơ khô mắt
+4.3.1 Mô hình dự đoán bệnh khô mắt (DED)
+
+Trong nghiên cứu này, XGBoost được lựa chọn làm mô hình huấn luyện chính do phù hợp với đặc thù của bài toán phát hiện bệnh khô mắt (Dry Eye Disease – DED). Bệnh DED có bản chất phi tuyến, chịu tác động đồng thời của nhiều yếu tố hành vi và sinh lý với mối quan hệ phức tạp giữa các biến, khó mô tả bằng các mô hình tuyến tính. XGBoost, dựa trên cây quyết định và cơ chế boosting, cho phép học hiệu quả các quan hệ phi tuyến và tương tác giữa các đặc trưng, đồng thời có khả năng chống nhiễu tốt và ít bị ảnh hưởng bởi sự dư thừa đặc trưng.
+Trong quá trình huấn luyện, các siêu tham số của XGBoost được tối ưu bằng GridSearchCV kết hợp cross-validation, nhằm lựa chọn cấu hình tham số phù hợp nhất và nâng cao hiệu năng mô hình. Các mô hình được đánh giá bằng Accuracy, Precision, Recall và F1-score.
+Để tiếp tục cải thiện hiệu năng, đặc biệt là tăng Recall cho lớp không DED, nghiên cứu áp dụng phương pháp Advanced Ensemble (Stacking kết hợp Neural Network) nhằm khai thác hiệu quả ưu điểm của nhiều mô hình khác nhau. 
+Cuối cùng, feature importance của các mô hình nền được sử dụng để đánh giá tổng quan mức độ ảnh hưởng của các đặc trưng, sau đó phương pháp SHAP được áp dụng nhằm giải thích chi tiết mức độ và hướng tác động của từng đặc trưng đến dự đoán nguy cơ mắc bệnh khô mắt.
+4.3.2 Mô hình…
+4.4. Hệ thống nhắc nhở thông minh và can thiệp hành vi
+
+4.5. Công nghệ và Môi trường Triển khai 
+Ngôn ngữ lập trình
+Python 3.10+: ngôn ngữ chính cho xử lý dữ liệu và xây dựng mô hình.
+Thư viện và Frameworks Khoa học Dữ liệu
+Pandas, NumPy: xử lý dữ liệu, tạo đặc trưng.
+Scikit-learn: huấn luyện và đánh giá mô hình cơ bản (Linear Regression, Random Forest).
+Matplotlib, Seaborn: trực quan hóa dữ liệu và mô hình.
+Imbalanced-learn (imblearn): được sử dụng để xử lý bài toán mất cân bằng dữ liệu.
+XGBoost: thuật toán Gradient Boosting dựa trên cây quyết định, được lựa chọn làm mô hình chính.
+LightGBM và CatBoost: các mô hình boosting hiện đại được sử dụng trong quá trình Ensemble Learning và Stacking.
+TensorFlow / Keras: xây dựng Neural Network meta-learner trong mô hình Stacking Ensemble, giúp học chiến lược kết hợp tối ưu từ đầu ra của nhiều mô hình nền (base models).
+Công cụ phát triển
+Git/GitHub, Google Drive, Google Docs: quản lý phiên bản, cộng tác nhóm.
+VS Code: phát triển và kiểm thử mã nguồn.
+Miro Mind Mapping Tool & draw.io: môi trường xây dựng flowchart.
+Nền tảng triển khai và hạ tầng
+Máy chủ cục bộ: huấn luyện và kiểm thử bước đầu.
+Google Colab: tận dụng GPU miễn phí.
+Cloud (AWS/GCP/Azure – nếu mở rộng): triển khai mô hình quy mô lớn, cung cấp API dự báo (nếu có thể)
+Web và Dashboard
+Tableau: …
+Flask/FastAPI (Python): …
+React + Node.js (tùy chọn):...
+
+
+CHƯƠNG 5. KẾT QUẢ VÀ THẢO LUẬN
+5.1. Thiết lập Thực nghiệm và Độ đo Đánh giá 
+Gợi ý: Mô tả cách bạn chia dữ liệu (train/validation/test). Nêu rõ các độ đo (metrics) được sử dụng để đánh giá mô hình (ví dụ: Accuracy, Precision, Recall, F1-score, MAE, R²...) và lý do lựa chọn chúng. 
+
+
+5.2. Kết quả Thực nghiệm 
+Gợi ý: Trình bày kết quả một cách khoa học qua các bảng biểu. So sánh hiệu quả của các mô hình/cách tiếp cận khác nhau mà bạn đã thử nghiệm (nếu có). Kết quả phải rõ ràng, trung thực. 
+
+5.3. Phân tích và Thảo luận Kết quả 
+Gợi ý: Đừng chỉ trình bày con số. Hãy phân tích ý nghĩa đằng sau chúng. Mô hình hoạt động tốt/chưa tốt ở những trường hợp nào? Tại sao? Rút ra những kết luận quan trọng từ kết quả thực nghiệm.
+
+CHƯƠNG 6. TRIỂN KHAI VÀ AI CÓ TRÁCH NHIỆM
+6.1. Giao diện và Trải nghiệm Người dùng (UI/UX) 
+Gợi ý: Chèn một vài ảnh chụp màn hình các chức năng chính của sản phẩm. Mô tả ngắn gọn về thiết kế giao diện và luồng trải nghiệm người dùng. Phần này hỗ trợ tiêu chí về "Trình bày, giao diện và demo sản phẩm". 
+
+6.2. Lộ trình Triển khai và Tính Bền vững 
+Gợi ý: Phân tích "tính khả thi triển khai" của sản phẩm. Kế hoạch đưa sản phẩm ra thực tế là gì? Mô hình kinh doanh (nếu có)? Làm sao để duy trì và phát triển sản phẩm sau cuộc thi? 
+
+6.3. Model Card và Phân tích Thiên vị (Bias) (BẮT BUỘC THEO THỂ LỆ) 
+Trình bày các thông tin về mô hình, các trường hợp sử dụng dự kiến, các yếu tố cần cân nhắc về đạo đức. Phân tích các rủi ro về thiên vị (bias) có thể xuất phát từ dữ liệu hoặc mô hình và các biện pháp đã thực hiện để kiểm soát và giảm thiểu chúng.
+
+CHƯƠNG 7. KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
+7.1. Kết luận 
+Gợi ý: Tóm tắt lại những gì dự án đã đạt được, đối chiếu với các mục tiêu đã đặt ra ở phần 1.2. 
+
+7.2. Hạn chế và Hướng phát triển 
+Gợi ý: Nêu rõ những hạn chế còn tồn tại của sản phẩm. Đề xuất các hướng nghiên cứu, phát triển cụ thể trong tương lai để khắc phục hạn chế và mở rộng tính năng.
+
+
+TÀI LIỆU THAM KHẢO
+[1] Uchino M, Dogru M, Yagi Y, et al. The features of dry eye disease in a Japanese elderly population. Optom Vis Sci 2006; 83(11): 797-802.
+[2] Han SB, Hyon JY, Woo SJ, Lee JJ, Kim TH, Kim KW. Prevalence of dry eye disease in an elderly Korean population. Arch Ophthalmol 2011; 129(5): 633-8.
+[3] Zhang X, Wang L, Zheng Y, Deng L, Huang X. Prevalence of dry eye disease in the elderly. Medicine (Baltimore) 2020; 99(37): e22234.
+[4] Allwihan R, Alhalwani A, Khojah M, Abduljawad J, Albedaiwi T, Bazhair R, Alkhayyat A, Alsolami M, Anbari L. The Impact of Electronic Device Use on Dry Eye Disease Symptoms based on Age and Gender: A Cross‑sectional Study in Health Science University Students. The Open Ophthalmology Journal 2024; 18: e18743641330774. DOI:10.2174/0118743641330774240909052623.
+[5] Albalawi E D, Alswayed S K, Aldharman S S, Alshangiti A Y, Alhussein G A, Alamawi H O. The association of screen time, sleep quality, and dry eye among college students in Saudi Arabia. Cureus 2023;15(4):e37533. PMID: 37193441.
+[6] Graham AD, Wang J, Kothapalli T, et al. Artificial intelligence models utilize lifestyle factors to predict dry eye related outcomes. Scientific Reports 2025;15:13378. doi:10.1038/s41598-025-96778-x.
+[7] Okumura Y, Inomata T, Midorikawa-Inomata A, Sung J, Fujio K, Akasaki Y, et al. DryEyeRhythm: A reliable and valid smartphone application for the diagnosis assistance of dry eye. Ocular Surface 2022; 25: 19–25.
+[8] Xu Z, Shen J, Jiang M, Wang Y, Sun Y, Lu F, et al. A smartphone-based blink training application for alleviating dry eye signs and symptoms. npj Digital Medicine 2025;8:703. doi:10.1038/s41746-025-02053-8.
+[9] Talens-Estarelles C, Cerviño A, García-Lázaro S, Fogelton A, Sheppard A, Wolffsohn JS, et al. The effects of breaks on digital eye strain, dry eye and binocular vision: Testing the 20-20-20 rule. Contact Lens & Anterior Eye 2023;46(2):101744. doi:10.1016/j.clae.2022.101744.
+

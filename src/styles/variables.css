@@ -1,0 +1,52 @@
+/* Design Tokens - Eye Friendly Palette */
+:root {
+    /* Color Palette - Light Mode (Default) */
+    --bg-app: #F5F7FA;
+    --bg-sidebar: #FFFFFF;
+    --bg-card: #FFFFFF;
+    
+    --text-primary: #1F2937; /* Soft Charcoal */
+    --text-secondary: #6B7280;
+    --text-accent: #6366F1; /* Indigo */
+
+    --border-subtle: #E5E7EB;
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    
+    --color-primary: #4F46E5;
+    --color-primary-hover: #4338CA;
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+
+    /* Assessment UI */
+    --option-bg: #F3F4F6;
+    --option-bg-hover: #E0E7FF;
+    --option-border: #E5E7EB;
+    --option-border-selected: #6366F1;
+    --option-text-selected: #4338CA;
+
+    /* Transition */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode Overrides */
+[data-theme="dark"] {
+    --bg-app: #111827; /* Very Dark Gray */
+    --bg-sidebar: #1F2937;
+    --bg-card: #1F2937;
+
+    --text-primary: #F3F4F6;
+    --text-secondary: #9CA3AF;
+    --text-accent: #818CF8;
+
+    --border-subtle: #374151;
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+
+    --color-primary: #6366F1;
+    --color-primary-hover: #818CF8;
+
+    --option-bg: #374151;
+    --option-bg-hover: #4B5563;
+    --option-border: #4B5563;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge Lighting</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Container for the border */
+        .edge-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-sizing: border-box;
+            border: 8px solid transparent;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* The active glow effect */
+        .edge-container.active {
+            opacity: 1;
+            /* Gradient Border Logic */
+            border-image-slice: 1;
+            border-width: 12px;
+            border-image-source: linear-gradient(
+                45deg,
+                #ff0000,
+                #ff7300,
+                #fffb00,
+                #48ff00,
+                #00ffd5,
+                #002bff,
+                #7a00ff,
+                #ff00c8,
+                #ff0000
+            );
+            animation: rotate-hue 1s linear infinite, pulse-width 1.5s ease-in-out infinite;
+            box-shadow: inset 0 0 20px rgba(0, 255, 213, 0.5);
+        }
+
+        @keyframes rotate-hue {
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse-width {
+            0% { border-width: 8px; opacity: 0.8; }
+            50% { border-width: 14px; opacity: 1; }
+            100% { border-width: 8px; opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div id="edge-box" class="edge-container"></div>
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        const box = document.getElementById('edge-box');
+
+        ipcRenderer.on('PLAY_ANIMATION', () => {
+            box.classList.add('active');
+            // Animation stops when window is hidden by Main process,
+            // but we can cleanup class just in case.
+            setTimeout(() => {
+                box.classList.remove('active');
+            }, 3500); // Main hides at 3000ms, this ensures reset
+        });
+    </script>
+</body>
+</html>

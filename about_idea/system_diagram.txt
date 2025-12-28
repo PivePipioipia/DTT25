@@ -1,0 +1,19 @@
+
+DIAGRAM HỆ THỐNG
+
+TỔNG QUAN HỆ THỐNG: A
+Sản phẩm bắt đầu từ App UI: người dùng mở app, chọn chế độ muốn dùng và quan trọng nhất là Consent & Privacy (cho phép camera/nhắc nhở/lưu dữ liệu ở mức nào). Từ đây hệ thống tách thành 2 đường chạy song song: (B) Work Companion để hỗ trợ xuyên suốt khi làm việc và (C) Eye Checkup để sàng lọc nguy cơ. Mọi thứ cuối cùng đều đổ về (D) Backend + QA: backend chỉ lưu dữ liệu tổng hợp để báo cáo, còn QA/Security thì kiểm thử–giám sát để hệ thống an toàn và đáng tin.
+
+Work Companion (nhắc khi làm việc): B
+Khi người dùng đang làm việc, hệ thống lấy tín hiệu từ 2 nguồn: (1) Timer tạo các mốc như Pomodoro và 20-20-20 (mỗi 20 phút nghỉ 20 giây nhìn xa khoảng 20 feet để giảm mỏi mắt do màn hình) AOA+1; (2) Camera CV chạy trên máy để đo hành vi thật như ngồi NEAR/OK/FAR, tần suất chớp mắt, chớp không hoàn chỉnh… Tất cả tín hiệu này đi vào Policy Engine (bộ não chống spam): áp rule, cooldown, và kiểm tra ngữ cảnh (đang họp/quiet mode/chưa consent) để quyết định “có nhắc không”. Nếu được nhắc, Message System chọn câu nhắc từ thư viện template và hiển thị in-app banner; đồng thời gửi log tổng hợp (không video) về backend để làm thống kê.
+
+Eye Checkup (khám/sàng lọc): C
+Ở chế độ khám, Chatbot trò chuyện dựa trên knowledge base/guideline, rồi dẫn người dùng trả lời survey chuẩn hoá như OSDI (12 câu đo triệu chứng và ảnh hưởng chức năng thị giác; điểm 0–100) PMC+1 và DEQ-5 (5 câu đã được nghiên cứu để phân biệt mức độ/nhóm chẩn đoán khô mắt) PubMed+1. Câu trả lời + thói quen được đưa vào Feature Builder để chuẩn hoá và gán trọng số tin cậy, sau đó ML Risk Model dự đoán risk score. Song song, hệ thống lấy camera summary dạng tổng hợp (ví dụ % thời gian ngồi quá gần, blink rate theo ngày/tuần). Cuối cùng, Fusion Decision kết hợp risk từ ML (dữ liệu tự báo cáo) với camera aggregates (hành vi thực tế) để ra kết luận cuối (thấp/vừa/cao) và Advice Agent đưa ra kết luận cuối cùng về tình trạng user.
+
+Backend + QA: D
+Backend Data nhận các kết quả quan trọng (risk score, kết luận fusion, các chỉ số tổng hợp từ camera và logs nhắc nhở) và chỉ lưu aggregate metrics, không lưu ảnh/video, để tạo dashboard theo dõi tuân thủ và xu hướng triệu chứng theo thời gian. Còn QA/Security/Governance là lớp giám sát: họ kiểm thử camera/policy/message/model/backend theo các checklist và khung quản trị rủi ro AI. Ví dụ, với AI có thể bám theo NIST AI RMF với 4 nhóm hoạt động GOVERN–MAP–MEASURE–MANAGE để quản lý rủi ro xuyên suốt vòng đời hệ thống                                              
+
+TÓM LẠI LÀ 2 CHỨC NĂNG CHÍNH LÀ KHÁM BỆNH (ml  + CAM) VÀ đồng hành xuyên suốt chỉnh thói quen. 
+
+CHƯA BIẾT GỌI LÀ GÌ:
+https://drive.google.com/file/d/1oYP6my0QvjthnM-zAoAJlErU51PZ1J8j/view?usp=sharing

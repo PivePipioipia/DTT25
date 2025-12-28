@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dry Eye Guard - AI Companion (TS)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">👁️ DryEyeGuard</div>
+            <button class="nav-btn" data-tab="work">Work Companion</button>
+            <button class="nav-btn active" data-tab="checkup">Eye Checkup</button>
+            <button class="nav-btn" data-tab="stats">Statistics</button>
+            <button class="nav-btn" data-tab="settings">Settings</button>
+        </nav>
+
+        <!-- Main Content (Same as before) -->
+        <main class="content">
+            <!-- Consent Modal Removed -->
+
+
+            <!-- 2. Work View -->
+            <section id="view-work" class="view">
+                <h1>Work Session</h1>
+                <div class="timer-container">
+                    <svg class="timer-svg" viewBox="0 0 200 200">
+                        <circle class="timer-bg" cx="100" cy="100" r="90"></circle>
+                        <circle id="timer-progress" class="timer-bar" cx="100" cy="100" r="90"></circle>
+                    </svg>
+                    <div class="timer-display">
+                        <span id="timer-text">25:00</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="btn-start-work" class="primary-btn">Start Focus</button>
+                    <button id="btn-pause-work" class="secondary-btn hidden">Pause</button>
+                    <button id="btn-reset-work" class="secondary-btn">Reset</button>
+                    <button id="btn-finish-work" class="secondary-btn hidden">Finish</button>
+                </div>
+                <!-- Distance Bar -->
+                <div class="distance-bar-container">
+                    <div class="distance-label">Distance: <span id="distance-value">Unknown</span></div>
+                    <div class="progress-track">
+                        <div id="distance-indicator" class="progress-fill ok"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Checkup View (Redesigned) -->
+            <section id="view-checkup" class="view active">
+                <div class="assessment-container">
+
+                    <!-- Progress Header -->
+                    <div id="assessment-progress" class="hidden">
+                        <div class="progress-panel">
+                            <span class="progress-info">Question <span id="progress-current">1</span> / 19</span>
+                            <span class="progress-info">~2 mins remaining</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div id="progress-fill" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+
+                    <!-- Question Card container -->
+                    <div id="question-card" class="question-card">
+                        <!-- Content injected by AssessmentController -->
+                        <div style="text-align:center; padding: 2rem;">
+                            <h2>Welcome to DryEyeGuard</h2>
+                            <p style="color:var(--text-secondary); margin:1rem 0;">
+                                Let's assess your eye health with a few simple questions.
+                            </p>
+                            <button id="btn-start-assess" class="primary-btn">Start Checkup</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 4. Stats View -->
+            <section id="view-stats" class="view">
+                <h1>Health Statistics</h1>
+                <div id="stats-container">
+                    <!-- Stats content will be injected by StatisticsController -->
+                    <p class="loading-text">Loading your health data...</p>
+                </div>
+            </section>
+            <!-- 5. Settings View -->
+            <section id="view-settings" class="view">
+                <h1>Settings</h1>
+                <div class="settings-container">
+
+                    <!-- Group 1: Preferences -->
+                    <div class="settings-group">
+                        <h3>Preferences</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Dark Mode</span>
+                                <span class="setting-desc">Switch between light and dark themes</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="setting-theme-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Group 2: Eye Care -->
+                    <div class="settings-group">
+                        <h3>Eye Care Companion</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Work Duration (mins)</span>
+                                <span class="setting-desc">Time to focus (max 60m)</span>
+                            </div>
+                            <input type="number" id="setting-work-duration" class="setting-input" min="5" max="60"
+                                value="25">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Break Duration (mins)</span>
+                                <span class="setting-desc">Eye rest time</span>
+                            </div>
+                            <input type="number" id="setting-break-duration" class="setting-input" min="1" max="30"
+                                value="5">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Sound Alerts</span>
+                                <span class="setting-desc">Play a sound when break starts</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="setting-sound-toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Group 3: System -->
+                    <div class="settings-group">
+                        <h3>System</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label">Camera Access</span>
+                                <span class="setting-desc">Check if camera permissions are granted</span>
+                            </div>
+                            <button id="btn-check-camera" class="secondary-btn small-btn">Test Camera</button>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <span class="setting-label danger-text">Reset Data</span>
+                                <span class="setting-desc">Clear all statistics and history</span>
+                            </div>
+                            <button id="btn-reset-data" class="danger-btn small-btn">Clear Data</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Camera Overlay -->
+    <div id="assessment-overlay" class="assessment-overlay hidden">
+        <video id="assessment-video" autoplay muted></video>
+        <canvas id="assessment-canvas"></canvas>
+        <div class="assessment-hud">
+            <div class="hud-item"><span class="hud-label">Dist:</span> <span id="hud-dist">0</span>cm</div>
+            <div class="hud-item"><span class="hud-label">EAR:</span> <span id="hud-ear">0.00</span></div>
+            <div class="hud-item"><span class="hud-label">Blinks:</span> <span id="hud-blinks">0</span></div>
+            <div class="hud-item"><span class="hud-label">Inc:</span> <span id="hud-incomplete">0</span></div>
+            <div class="hud-item"><span class="hud-label">Rate:</span> <span id="hud-rate">0</span></div>
+        </div>
+        <div class="overlay-status">Scanning... <span id="overlay-timer">10</span>s</div>
+    </div>
+
+    <!-- Modules Entry Point -->
+    <script type="module" src="/src/main.ts"></script>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="toast hidden">
+        <div class="toast-icon">🔔</div>
+        <div class="toast-content">
+            <div id="toast-title" class="toast-title">Notification</div>
+            <div id="toast-message" class="toast-message">Message body</div>
+        </div>
+    </div>
+
+    <!-- ALERT MODAL -->
+    <div id="alert-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <h3 id="modal-title">Alert</h3>
+            <p id="modal-message">Description of the alert goes here.</p>
+            <div class="modal-actions">
+                <button id="btn-modal-snooze" class="secondary-btn">Snooze</button>
+                <button id="btn-modal-dismiss" class="primary-btn">Okay</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
