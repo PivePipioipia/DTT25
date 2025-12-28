@@ -124,18 +124,28 @@ class AppController {
         const descEl = document.getElementById('preset-description');
         if (descEl) descEl.textContent = preset.description;
 
-        // Update timer display
-        const timerEl = document.getElementById('timer-text');
-        if (timerEl) timerEl.textContent = `${preset.workDuration}:00`;
+        // Get work duration (from preset or localStorage for custom)
+        let workDuration = preset.workDuration;
+        let breakDuration = preset.breakDuration;
 
-        // Apply to pomodoro if not custom
-        if (preset.id !== 'custom') {
-            localStorage.setItem('work_duration', preset.workDuration.toString());
-            localStorage.setItem('break_duration', preset.breakDuration.toString());
-            this.pomodoro.timer.init();
+        if (preset.id === 'custom') {
+            // Load custom values from localStorage
+            workDuration = parseInt(localStorage.getItem('work_duration') || '25');
+            breakDuration = parseInt(localStorage.getItem('break_duration') || '5');
+        } else {
+            // Save preset values to localStorage
+            localStorage.setItem('work_duration', workDuration.toString());
+            localStorage.setItem('break_duration', breakDuration.toString());
         }
 
-        console.log(`Preset selected: ${preset.name}`);
+        // Update timer display
+        const timerEl = document.getElementById('timer-text');
+        if (timerEl) timerEl.textContent = `${workDuration}:00`;
+
+        // Re-initialize timer
+        this.pomodoro.timer.init();
+
+        console.log(`Preset selected: ${preset.name} - Work: ${workDuration}m, Break: ${breakDuration}m`);
     }
 
     bindUI() {
