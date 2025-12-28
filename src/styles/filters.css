@@ -1,0 +1,147 @@
+/**
+ * Display Filters Styles
+ * Styling for warmth and brightness sliders
+ */
+
+/* Slider Item */
+.slider-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+/* Slider Container */
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.slider-label-left,
+.slider-label-right {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    min-width: 40px;
+}
+
+.slider-label-left {
+    text-align: right;
+}
+
+.slider-label-right {
+    text-align: left;
+}
+
+.slider-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    min-width: 45px;
+    text-align: center;
+}
+
+/* Range Slider */
+.range-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+.range-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+/* Warmth slider - orange tint */
+#setting-warmth::-webkit-slider-thumb {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+}
+
+#setting-warmth::-moz-range-thumb {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+}
+
+/* Brightness slider - yellow tint */
+#setting-brightness::-webkit-slider-thumb {
+    background: linear-gradient(135deg, #fcd34d, #f59e0b);
+}
+
+#setting-brightness::-moz-range-thumb {
+    background: linear-gradient(135deg, #fcd34d, #f59e0b);
+}
+
+/* Screen Filter Overlay */
+#screen-filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+/* Work Companion Filters */
+.work-filters {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.filter-row:last-child {
+    margin-bottom: 0;
+}
+
+.filter-icon {
+    font-size: 1.1rem;
+}
+
+.filter-label {
+    min-width: 70px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.filter-value {
+    min-width: 40px;
+    text-align: right;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+}

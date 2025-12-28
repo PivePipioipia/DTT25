@@ -18,6 +18,7 @@ import { WORK_PRESETS, WorkPreset, getPresetById, getDefaultPreset } from './mod
 import './styles/advisor.css';
 import './styles/result.css';
 import './styles/presets.css';
+import './styles/filters.css';
 
 class AppController {
     // Services
@@ -451,6 +452,9 @@ class AppController {
             });
         }
 
+        // 1.5 Display Filters
+        this.initDisplayFilters();
+
         // 2. Work & Break Durations
         const workDurationInput = document.getElementById('setting-work-duration') as HTMLInputElement;
         const breakDurationInput = document.getElementById('setting-break-duration') as HTMLInputElement;
@@ -576,6 +580,75 @@ class AppController {
         // Sync toggle if it exists
         const toggle = document.getElementById('setting-theme-toggle') as HTMLInputElement;
         if (toggle) toggle.checked = document.body.getAttribute('data-theme') === 'dark';
+    }
+
+    initDisplayFilters() {
+        const warmthSlider = document.getElementById('setting-warmth') as HTMLInputElement;
+        const brightnessSlider = document.getElementById('setting-brightness') as HTMLInputElement;
+        const warmthValue = document.getElementById('warmth-value');
+        const brightnessValue = document.getElementById('brightness-value');
+        const resetBtn = document.getElementById('btn-reset-filters');
+
+        // Load saved values
+        const savedWarmth = localStorage.getItem('filter_warmth') || '0';
+        const savedBrightness = localStorage.getItem('filter_brightness') || '100';
+
+        if (warmthSlider) {
+            warmthSlider.value = savedWarmth;
+            if (warmthValue) warmthValue.textContent = `${savedWarmth}%`;
+
+            warmthSlider.addEventListener('input', () => {
+                const val = warmthSlider.value;
+                if (warmthValue) warmthValue.textContent = `${val}%`;
+                localStorage.setItem('filter_warmth', val);
+                this.applyFilters();
+            });
+        }
+
+        if (brightnessSlider) {
+            brightnessSlider.value = savedBrightness;
+            if (brightnessValue) brightnessValue.textContent = `${savedBrightness}%`;
+
+            brightnessSlider.addEventListener('input', () => {
+                const val = brightnessSlider.value;
+                if (brightnessValue) brightnessValue.textContent = `${val}%`;
+                localStorage.setItem('filter_brightness', val);
+                this.applyFilters();
+            });
+        }
+
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                if (warmthSlider) warmthSlider.value = '0';
+                if (brightnessSlider) brightnessSlider.value = '100';
+                if (warmthValue) warmthValue.textContent = '0%';
+                if (brightnessValue) brightnessValue.textContent = '100%';
+                localStorage.setItem('filter_warmth', '0');
+                localStorage.setItem('filter_brightness', '100');
+                this.applyFilters();
+            });
+        }
+
+        // Apply saved filters on load
+        this.applyFilters();
+    }
+
+    applyFilters() {
+        const warmth = parseInt(localStorage.getItem('filter_warmth') || '0');
+        const brightness = parseInt(localStorage.getItem('filter_brightness') || '100');
+
+        // sepia for warmth (0-100 maps to 0-50% sepia)
+        const sepiaValue = warmth / 2;
+        // brightness (50-100 maps to 0.5-1.0)
+        const brightnessValue = brightness / 100;
+        // slight saturation reduction with warmth
+        const saturation = 100 - (warmth / 5);
+
+        document.body.style.filter = `
+            sepia(${sepiaValue}%)
+            brightness(${brightnessValue})
+            saturate(${saturation}%)
+        `;
     }
 }
 

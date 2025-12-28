@@ -63,6 +63,22 @@
                         <div id="distance-indicator" class="progress-fill ok"></div>
                     </div>
                 </div>
+                
+                <!-- Display Filters -->
+                <div class="work-filters">
+                    <div class="filter-row">
+                        <span class="filter-icon">🌡️</span>
+                        <span class="filter-label">Warmth</span>
+                        <input type="range" id="setting-warmth" class="range-slider" min="0" max="100" value="0">
+                        <span class="filter-value" id="warmth-value">0%</span>
+                    </div>
+                    <div class="filter-row">
+                        <span class="filter-icon">🔆</span>
+                        <span class="filter-label">Brightness</span>
+                        <input type="range" id="setting-brightness" class="range-slider" min="50" max="100" value="100">
+                        <span class="filter-value" id="brightness-value">100%</span>
+                    </div>
+                </div>
             </section>
 
             <!-- 3. Checkup View (Redesigned) -->
@@ -126,7 +142,6 @@
                             <label class="toggle-switch">
                                 <input type="checkbox" id="setting-theme-toggle">
                                 <span class="slider"></span>
-                            </label>
                         </div>
                     </div>
 
