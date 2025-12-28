@@ -1,0 +1,93 @@
+/**
+ * Work Presets Styles
+ * Styling for the preset mode selection in Work Companion
+ */
+
+/* Preset Container */
+.preset-container {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.preset-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+/* Preset Grid */
+.preset-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Preset Button */
+.preset-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    min-width: 70px;
+    background: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.preset-btn.active {
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.preset-btn .preset-icon {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.preset-btn .preset-name {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Preset Description */
+.preset-description {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Hide presets when session is running */
+.preset-container.hidden {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .preset-grid {
+        gap: 0.4rem;
+    }
+    
+    .preset-btn {
+        padding: 0.4rem 0.6rem;
+        min-width: 60px;
+    }
+    
+    .preset-btn .preset-icon {
+        font-size: 1rem;
+    }
+    
+    .preset-btn .preset-name {
+        font-size: 0.7rem;
+    }
+}

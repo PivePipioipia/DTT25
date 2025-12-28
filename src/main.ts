@@ -14,8 +14,10 @@ import { ConsentManager } from './modules/core/ConsentManager';
 import { NotificationService } from './modules/pomodoro/NotificationService';
 import { PolicyEngine } from './modules/pomodoro/PolicyEngine';
 import { AdvisorController } from './modules/chatbot/AdvisorController';
+import { WORK_PRESETS, WorkPreset, getPresetById, getDefaultPreset } from './modules/pomodoro/WorkPresets';
 import './styles/advisor.css';
 import './styles/result.css';
+import './styles/presets.css';
 
 class AppController {
     // Services
@@ -29,6 +31,7 @@ class AppController {
     policy: PolicyEngine;
     notifications: NotificationService;
     advisor: AdvisorController;
+    selectedPreset: WorkPreset;
 
     constructor() {
         console.log("App Controller Initializing...");
@@ -72,9 +75,67 @@ class AppController {
         // Advisor/FAQ Controller
         this.advisor = new AdvisorController();
 
+        // Work Presets
+        this.selectedPreset = getDefaultPreset();
+        this.initPresets();
+
         // 4. UI Bindings
         this.bindUI();
         this.bindPomodoroEvents();
+    }
+
+    initPresets() {
+        const grid = document.getElementById('preset-grid');
+        const descEl = document.getElementById('preset-description');
+        if (!grid) return;
+
+        // Render preset buttons
+        grid.innerHTML = WORK_PRESETS.map(preset => `
+            <button class="preset-btn ${preset.id === this.selectedPreset.id ? 'active' : ''}" data-preset-id="${preset.id}">
+                <span class="preset-icon">${preset.icon}</span>
+                <span class="preset-name">${preset.name}</span>
+            </button>
+        `).join('');
+
+        // Bind click events
+        grid.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const presetId = (e.currentTarget as HTMLElement).dataset.presetId;
+                if (presetId) this.selectPreset(presetId);
+            });
+        });
+    }
+
+    selectPreset(presetId: string) {
+        const preset = getPresetById(presetId);
+        if (!preset) return;
+
+        this.selectedPreset = preset;
+
+        // Update UI
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if ((btn as HTMLElement).dataset.presetId === presetId) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Update description
+        const descEl = document.getElementById('preset-description');
+        if (descEl) descEl.textContent = preset.description;
+
+        // Update timer display
+        const timerEl = document.getElementById('timer-text');
+        if (timerEl) timerEl.textContent = `${preset.workDuration}:00`;
+
+        // Apply to pomodoro if not custom
+        if (preset.id !== 'custom') {
+            localStorage.setItem('work_duration', preset.workDuration.toString());
+            localStorage.setItem('break_duration', preset.breakDuration.toString());
+            this.pomodoro.timer.init();
+        }
+
+        console.log(`Preset selected: ${preset.name}`);
     }
 
     bindUI() {
