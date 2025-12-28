@@ -1,0 +1,120 @@
+# Kế Hoạch Triển Khai Chatbot - DryEyeGuard
+
+## Mục Tiêu
+Xây dựng 2 chức năng chatbot:
+1. **Phản hồi kết quả chẩn đoán** - Sau Eye Checkup
+2. **Chatbot FAQ** - Tab mới để hỏi đáp về sức khỏe mắt
+
+---
+
+## Phần 1: Phản Hồi Kết Quả Chẩn Đoán
+
+### Vị trí trong App
+- Nằm trong tab **Eye Checkup**
+- Hiển thị **SAU KHI** user hoàn thành 19 câu hỏi khảo sát
+
+### Luồng hoạt động
+```
+User làm khảo sát (19 câu)
+    ↓
+Tính Risk Score (từ ML model hoặc rule-based)
+    ↓
+Hiển thị kết quả + Lời khuyên cá nhân hóa
+```
+
+### Files cần tạo/sửa
+
+#### [NEW] `src/modules/chatbot/ResponseGenerator.ts`
+Chức năng: Tạo phản hồi dựa trên kết quả khảo sát
+
+#### [MODIFY] [src/modules/ui/AssessmentController.ts](file:///d:/dry-eye-app/src/modules/ui/AssessmentController.ts)
+Chức năng: Gọi ResponseGenerator sau khi khảo sát xong
+
+---
+
+## Phần 2: Chatbot FAQ (Tab Mới)
+
+### Vị trí trong App
+- Tab mới: **"Tư Vấn"** hoặc **"Hỏi Đáp"**
+- Nằm trong sidebar cùng với Work Companion, Eye Checkup...
+
+### Luồng hoạt động
+```
+User chọn tab "Tư Vấn"
+    ↓
+Hiển thị danh sách chủ đề/câu hỏi
+    ↓
+User click vào câu hỏi
+    ↓
+Chatbot hiển thị câu trả lời + gợi ý liên quan
+```
+
+### Files cần tạo/sửa
+
+#### [NEW] `src/modules/chatbot/FAQBank.ts`
+Chức năng: Chứa tất cả câu hỏi và câu trả lời
+
+#### [NEW] `src/modules/chatbot/AdvisorController.ts`
+Chức năng: Điều khiển logic hiển thị FAQ
+
+#### [MODIFY] [index.html](file:///d:/dry-eye-app/index.html)
+Chức năng: Thêm button tab mới + section view
+
+#### [NEW] `src/styles/advisor.css`
+Chức năng: Style cho giao diện tư vấn
+
+---
+
+## Các Bước Thực Hiện
+
+### Bước 1: Tạo ResponseGenerator.ts
+- [ ] Hàm `generateDiagnosisResponse(riskScore, features)` → Trả về thông điệp kết quả
+- [ ] Hàm `generatePersonalizedAdvice(features)` → Trả về danh sách lời khuyên
+
+### Bước 2: Tạo FAQBank.ts
+- [ ] Định nghĩa cấu trúc dữ liệu FAQ
+- [ ] Viết nội dung 10-15 câu hỏi thường gặp
+- [ ] Phân loại theo chủ đề (Triệu chứng, Phòng ngừa, Điều trị...)
+
+### Bước 3: Cập nhật UI - Eye Checkup
+- [ ] Sửa AssessmentController để hiển thị kết quả mới
+- [ ] Thiết kế giao diện hiển thị kết quả đẹp mắt
+
+### Bước 4: Thêm Tab Tư Vấn mới
+- [ ] Thêm button trong sidebar (index.html)
+- [ ] Tạo section view mới
+- [ ] Tạo AdvisorController
+
+### Bước 5: Styling & Testing
+- [ ] Tạo file CSS riêng cho advisor
+- [ ] Test tất cả luồng hoạt động
+
+---
+
+## Nội Dung Mẫu
+
+### Mẫu Câu Hỏi FAQ
+
+| Chủ đề | Câu hỏi |
+|--------|---------|
+| Kiến thức cơ bản | Bệnh khô mắt là gì? |
+| Kiến thức cơ bản | Nguyên nhân gây khô mắt? |
+| Triệu chứng | Làm sao biết tôi bị khô mắt? |
+| Phòng ngừa | Quy tắc 20-20-20 là gì? |
+| Phòng ngừa | Nên chớp mắt bao nhiêu lần/phút? |
+| Điều trị | Khi nào cần gặp bác sĩ? |
+| Điều trị | Nước mắt nhân tạo có tác dụng gì? |
+| Lối sống | Thức ăn nào tốt cho mắt? |
+| Lối sống | Nên ngủ bao nhiêu tiếng? |
+| Công nghệ | Kính lọc ánh sáng xanh có hiệu quả không? |
+
+### Mẫu Response theo Risk Level
+
+**Risk THẤP (< 40%):**
+> 🟢 Tuyệt vời! Mắt của bạn đang khỏe mạnh. Hãy duy trì thói quen tốt nhé!
+
+**Risk TRUNG BÌNH (40-70%):**
+> 🟡 Bạn có một số dấu hiệu cần chú ý. Hãy áp dụng các biện pháp phòng ngừa sau...
+
+**Risk CAO (> 70%):**
+> 🔴 Bạn có nguy cơ khô mắt cao. Nên thực hiện ngay các biện pháp sau và cân nhắc gặp bác sĩ...

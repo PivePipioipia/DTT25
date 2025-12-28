@@ -4,6 +4,14 @@
  */
 
 import { QUESTION_BANK } from '../chatbot/QuestionBank';
+import { 
+    calculateRiskScore, 
+    generateDiagnosisResponse, 
+    generatePersonalizedAdvice,
+    DiagnosisResult,
+    AdviceItem
+} from '../chatbot/ResponseGenerator';
+import { FeatureKey } from '../../types/chatbot';
 
 export class AssessmentController {
     private cardContainer: HTMLElement | null;
@@ -113,6 +121,64 @@ export class AssessmentController {
                 </div>
             </div>
         `;
+    }
+
+    /**
+     * Enhanced result display with personalized advice
+     */
+    renderEnhancedResult(features: Record<FeatureKey, number>) {
+        if (!this.cardContainer) return;
+        this.progressContainer?.classList.add('hidden');
+
+        // Calculate risk and generate responses
+        const riskScore = calculateRiskScore(features);
+        const diagnosis = generateDiagnosisResponse(riskScore);
+        const advice = generatePersonalizedAdvice(features);
+
+        // Build advice HTML
+        const adviceHTML = advice.slice(0, 5).map(item => `
+            <div class="advice-card ${item.priority}">
+                <span class="advice-icon">${item.icon}</span>
+                <div class="advice-content">
+                    <div class="advice-title">${item.title}</div>
+                    <div class="advice-desc">${item.description}</div>
+                </div>
+            </div>
+        `).join('');
+
+        this.cardContainer.innerHTML = `
+            <div class="result-container">
+                <div class="result-header" style="border-left: 4px solid ${diagnosis.color};">
+                    <span class="result-icon">${diagnosis.icon}</span>
+                    <div class="result-info">
+                        <h2 class="result-title">${diagnosis.title}</h2>
+                        <div class="result-score">
+                            <span>Điểm nguy cơ:</span>
+                            <strong style="color: ${diagnosis.color}">${diagnosis.riskScore}%</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="result-message">${diagnosis.message}</p>
+                
+                <div class="advice-section">
+                    <h3>💡 Lời khuyên dành cho bạn</h3>
+                    <div class="advice-list">
+                        ${adviceHTML}
+                    </div>
+                </div>
+                
+                <div class="result-actions">
+                    <button class="secondary-btn" onclick="window.location.reload()">Làm lại</button>
+                    <button class="primary-btn" id="btn-go-advisor">Tìm hiểu thêm</button>
+                </div>
+            </div>
+        `;
+
+        // Bind go to advisor button
+        document.getElementById('btn-go-advisor')?.addEventListener('click', () => {
+            document.querySelector('[data-tab="advisor"]')?.dispatchEvent(new Event('click'));
+        });
     }
 
     updateProgress() {

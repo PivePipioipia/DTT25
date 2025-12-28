@@ -188,7 +188,8 @@ export class DiagnosticFlow extends EventEmitter {
 
         this.emit('diagnosis_complete', {
             result: finalDiagnosis,
-            message: advice
+            message: advice,
+            features: this.surveyFlow.getCompletedFeatures()
         });
     }
 }

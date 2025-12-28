@@ -13,6 +13,9 @@ import { WorkCompanion } from './modules/core/WorkCompanion';
 import { ConsentManager } from './modules/core/ConsentManager';
 import { NotificationService } from './modules/pomodoro/NotificationService';
 import { PolicyEngine } from './modules/pomodoro/PolicyEngine';
+import { AdvisorController } from './modules/chatbot/AdvisorController';
+import './styles/advisor.css';
+import './styles/result.css';
 
 class AppController {
     // Services
@@ -25,6 +28,7 @@ class AppController {
     pomodoro: WorkCompanion;
     policy: PolicyEngine;
     notifications: NotificationService;
+    advisor: AdvisorController;
 
     constructor() {
         console.log("App Controller Initializing...");
@@ -64,6 +68,9 @@ class AppController {
 
         this.stats = new StatisticsController(this.db);
         this.stats.gameService = this.game;
+
+        // Advisor/FAQ Controller
+        this.advisor = new AdvisorController();
 
         // 4. UI Bindings
         this.bindUI();
@@ -162,10 +169,15 @@ class AppController {
         });
 
         this.diagnosis.on('diagnosis_complete', (data: any) => {
-            this.assessment.renderResult(
-                `Risk: ${data.result.severity.toUpperCase()}`,
-                data.message
-            );
+            // Use enhanced result if features are available
+            if (data.features) {
+                this.assessment.renderEnhancedResult(data.features);
+            } else {
+                this.assessment.renderResult(
+                    `Risk: ${data.result.severity.toUpperCase()}`,
+                    data.message
+                );
+            }
         });
 
     }
@@ -311,6 +323,10 @@ class AppController {
 
         if (tab === 'stats') {
             this.stats.init();
+        }
+
+        if (tab === 'advisor') {
+            this.advisor.reset();
         }
     }
 

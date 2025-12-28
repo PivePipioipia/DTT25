@@ -1,0 +1,131 @@
+/**
+ * Result Display Styles
+ * Styling for enhanced diagnosis results
+ */
+
+/* Result Container */
+.result-container {
+    padding: 1rem;
+}
+
+/* Header */
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.result-icon {
+    font-size: 2.5rem;
+}
+
+.result-info {
+    flex: 1;
+}
+
+.result-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.result-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.result-score strong {
+    font-size: 1.1rem;
+}
+
+/* Message */
+.result-message {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+    padding: 0 0.5rem;
+}
+
+/* Advice Section */
+.advice-section {
+    margin-bottom: 1.5rem;
+}
+
+.advice-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+}
+
+.advice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Advice Card */
+.advice-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+.advice-card.high {
+    border-left: 3px solid #ef4444;
+}
+
+.advice-card.medium {
+    border-left: 3px solid #eab308;
+}
+
+.advice-card.low {
+    border-left: 3px solid #22c55e;
+}
+
+.advice-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.advice-content {
+    flex: 1;
+}
+
+.advice-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.advice-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Actions */
+.result-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    padding-top: 0.5rem;
+}
+
+.result-actions button {
+    min-width: 120px;
+}
