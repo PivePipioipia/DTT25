@@ -47,7 +47,7 @@
     -webkit-appearance: none;
     appearance: none;
     height: 6px;
-    background: var(--border);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
     outline: none;
     cursor: pointer;
